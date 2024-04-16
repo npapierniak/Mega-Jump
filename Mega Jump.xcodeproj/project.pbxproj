@@ -15,6 +15,7 @@
 		EF851F332BCEC6050078DC77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF851F312BCEC6050078DC77 /* Main.storyboard */; };
 		EF851F352BCEC6060078DC77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF851F342BCEC6060078DC77 /* Assets.xcassets */; };
 		EF851F382BCEC6060078DC77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF851F362BCEC6060078DC77 /* LaunchScreen.storyboard */; };
+		EF851F3F2BCEC8D40078DC77 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF851F3E2BCEC8D40078DC77 /* StartScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		EF851F322BCEC6050078DC77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF851F342BCEC6060078DC77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF851F372BCEC6060078DC77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EF851F3E2BCEC8D40078DC77 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				EF851F292BCEC6050078DC77 /* GameScene.sks */,
 				EF851F2B2BCEC6050078DC77 /* Actions.sks */,
 				EF851F2D2BCEC6050078DC77 /* GameScene.swift */,
+				EF851F3E2BCEC8D40078DC77 /* StartScreen.swift */,
 				EF851F2F2BCEC6050078DC77 /* GameViewController.swift */,
 				EF851F312BCEC6050078DC77 /* Main.storyboard */,
 				EF851F342BCEC6060078DC77 /* Assets.xcassets */,
@@ -146,6 +149,7 @@
 			files = (
 				EF851F2E2BCEC6050078DC77 /* GameScene.swift in Sources */,
 				EF851F302BCEC6050078DC77 /* GameViewController.swift in Sources */,
+				EF851F3F2BCEC8D40078DC77 /* StartScreen.swift in Sources */,
 				EF851F282BCEC6050078DC77 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
