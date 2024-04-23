@@ -16,7 +16,7 @@ class StartScreen: SKScene, SKPhysicsContactDelegate {
         createButton()
     }
     func createBackground() {
-        let imageName = "f0b8d6fc41d58e868b348cc33881093f.jpg"
+        let imageName = "360_F_621585347_GATWJ061PptsBJqhGpSi6KWIFsxnYnCb"
         let stars = SKTexture (imageNamed: imageName)
         for i in 0...1 {
             let starsBackground = SKSpriteNode (texture: stars)
@@ -31,7 +31,7 @@ class StartScreen: SKScene, SKPhysicsContactDelegate {
     }
     func createButton() {
         play = SKSpriteNode(texture: playbutt, size: CGSize(width: 100, height: 60))
-        play.position = CGPoint(x: 0, y: -75)
+        play.position = CGPoint(x: 0, y: -60)
         
         // Set the name and enable user interaction
         play.name = "playButton"
