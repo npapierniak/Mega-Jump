@@ -11,6 +11,7 @@ import GameplayKit
 class StartScreen: SKScene, SKPhysicsContactDelegate {
     let playbutt = SKTexture(imageNamed: "F2C97135-A8F6-4995-9B1E-071E31B48D82")
     var play = SKSpriteNode()
+    var startScene: SKScene!
     override func didMove(to view: SKView) {
         createBackground()
         createButton()
@@ -32,27 +33,23 @@ class StartScreen: SKScene, SKPhysicsContactDelegate {
     func createButton() {
         play = SKSpriteNode(texture: playbutt, size: CGSize(width: 100, height: 60))
         play.position = CGPoint(x: 0, y: -60)
-        
-        // Set the name and enable user interaction
         play.name = "playButton"
-        play.isUserInteractionEnabled = true
         // Add the button node to the scene
         addChild(play)
     }
+    func buttonClicked()
+    {
+        
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // Check if any touch event occurred
-        guard let touch = touches.first else { return }
-        
-        // Get the location of the touch in this scene
-        let touchLocation = touch.location(in: self)
-        
-        // Check if the play button node is touched
-        if play.contains(touchLocation) {
-            // Transition to the next scene (e.g., NextScene)
-            let nextScene = GameScene(size: self.size)
-            
-            // Present the next scene with a crossfade transition
-            self.view?.presentScene(nextScene, transition: SKTransition.crossFade(withDuration: 0.5))
+        for touch in touches {
+            let location = touch.location(in: self)
+            let touchedNode = atPoint(location)
+            if touchedNode.name == "playButton" {
+                let transition = SKTransition.fade(withDuration: 1)
+                startScene = SKScene(fileNamed: "GameScene")
+                self.view?.presentScene(startScene, transition: transition)
+            }
         }
     }
 }
