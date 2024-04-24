@@ -24,7 +24,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func resetGame() {
         //this stuff happens before every game
         makePlayer()
-        
+        let button = UIButton(type: .system)
+        button.setTitle("Press Me", for: .normal)
+                button.frame = CGRect(x: 50, y: 100, width: 200, height: 50)
+        if let gameView = view {
+                // Add the button to the view
+                gameView.addSubview(button)
+            }
     }
     
     func makePlayer() {
