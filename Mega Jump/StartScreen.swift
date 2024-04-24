@@ -12,9 +12,11 @@ class StartScreen: SKScene, SKPhysicsContactDelegate {
     let playbutt = SKTexture(imageNamed: "F2C97135-A8F6-4995-9B1E-071E31B48D82")
     var play = SKSpriteNode()
     var startScene: SKScene!
+    var game = SKLabelNode()
     override func didMove(to view: SKView) {
         createBackground()
         createButton()
+        createName()
     }
     func createBackground() {
         let imageName = "360_F_621585347_GATWJ061PptsBJqhGpSi6KWIFsxnYnCb"
@@ -37,10 +39,6 @@ class StartScreen: SKScene, SKPhysicsContactDelegate {
         // Add the button node to the scene
         addChild(play)
     }
-    func buttonClicked()
-    {
-        
-    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
@@ -51,6 +49,11 @@ class StartScreen: SKScene, SKPhysicsContactDelegate {
                 self.view?.presentScene(startScene, transition: transition)
             }
         }
+    }
+    func createName()
+    {
+        game = SKLabelNode(text: "Mega Jump")
+        game.position = CGPoint(x: 0, y: 30)
     }
 }
 
