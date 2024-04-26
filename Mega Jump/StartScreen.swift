@@ -34,7 +34,7 @@ class StartScreen: SKScene, SKPhysicsContactDelegate {
     }
     func createButton() {
         play = SKSpriteNode(texture: playbutt, size: CGSize(width: 100, height: 60))
-        play.position = CGPoint(x: 0, y: -60)
+        play.position = CGPoint(x: 10, y: 0)
         play.name = "playButton"
         // Add the button node to the scene
         addChild(play)
@@ -52,11 +52,12 @@ class StartScreen: SKScene, SKPhysicsContactDelegate {
     }
     func createName()
     {
-        let gameName = SKLabelNode(fontNamed: "Verdana")
+        let gameName = SKLabelNode()
         gameName.text = "Mega Jump"
         gameName.fontSize = 50
         gameName.fontColor = .black
-        gameName.position = CGPoint(x: 0, y: 40)
+        gameName.fontName = "Georgia-Bold"
+        gameName.position = CGPoint(x: 10, y: 80)
         addChild(gameName)
     }
 }
