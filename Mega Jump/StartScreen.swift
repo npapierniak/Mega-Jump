@@ -52,8 +52,12 @@ class StartScreen: SKScene, SKPhysicsContactDelegate {
     }
     func createName()
     {
-        game = SKLabelNode(text: "Mega Jump")
-        game.position = CGPoint(x: 0, y: 30)
+        let gameName = SKLabelNode(fontNamed: "Verdana")
+        gameName.text = "Mega Jump"
+        gameName.fontSize = 50
+        gameName.fontColor = .black
+        gameName.position = CGPoint(x: 0, y: 40)
+        addChild(gameName)
     }
 }
 
