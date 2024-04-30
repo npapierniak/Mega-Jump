@@ -9,8 +9,10 @@ import SpriteKit
 import GameplayKit
 
 class HowToScreen: SKScene, SKPhysicsContactDelegate {
+    private var label : SKLabelNode?
     override func didMove(to view: SKView) {
         createBackground()
+        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
     }
     func createBackground() {
         let imageName = "IMG_0981"
