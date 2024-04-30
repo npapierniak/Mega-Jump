@@ -12,9 +12,14 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
   var player = SKSpriteNode()
+    var gameCamera = SKCameraNode()
+    var moveLeft = false
     
     override func didMove(to view: SKView) {
         //this stuff happens when game opens
+        camera = gameCamera
+        addChild(gameCamera)
+        
         physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
@@ -24,14 +29,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func resetGame() {
         //this stuff happens before every game
         makePlayer()
-        let button = UIButton(type: .system)
-        button.setTitle("Press Me", for: .normal)
-                button.frame = CGRect(x: 50, y: 100, width: 200, height: 50)
-        if let gameView = view {
-                // Add the button to the view
+        addControlButton()
+    }
+    
+    func addControlButton() {
+            let button = UIButton(type: .system)
+            button.setTitle("Move Left", for: .normal)
+            button.frame = CGRect(x: 50, y: 100, width: 200, height: 50)
+            button.addTarget(self, action: #selector(buttonPressed), for: .touchDown)
+            button.addTarget(self, action: #selector(buttonReleased), for: [.touchUpInside, .touchUpOutside])
+            
+            if let gameView = view {
                 gameView.addSubview(button)
             }
-    }
+        }
+    
+    @objc func buttonPressed() {
+            moveLeft = true
+        }
+        
+        @objc func buttonReleased() {
+            moveLeft = false
+        }
     
     func makePlayer() {
         player.removeFromParent()
@@ -52,5 +71,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             addChild(player)
             
     }
+    
+    override func update(_ currentTime: TimeInterval) {
+            // Move player left if the button is pressed
+            if moveLeft {
+                player.physicsBody?.velocity = CGVector(dx: -100, dy: 0)  // Adjust the velocity as needed
+            } else {
+                player.physicsBody?.velocity = CGVector(dx: 0, dy: 0)  // Stop player if button is released
+            }
+            
+            // Update camera position to follow the player
+            gameCamera.position = player.position
+        }
     
 }
