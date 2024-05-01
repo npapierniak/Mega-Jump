@@ -18,11 +18,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         //this stuff happens when game opens
+        let extendedFrame = CGRect(x: frame.origin.x - 500, // Adjust as needed
+                                   y: frame.origin.y - 100, // Adjust as needed
+                                   width: frame.size.width + 200, // Adjust as needed
+                                   height: frame.size.height)
         camera = gameCamera
         addChild(gameCamera)
         
         physicsWorld.contactDelegate = self
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: extendedFrame)
         
         resetGame()
     }
