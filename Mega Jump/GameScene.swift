@@ -14,6 +14,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
   var player = SKSpriteNode()
     var gameCamera = SKCameraNode()
     var moveLeft = false
+    var moveRight = false
     
     override func didMove(to view: SKView) {
         //this stuff happens when game opens
@@ -33,24 +34,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addControlButton() {
-            let button = UIButton(type: .system)
-            button.setTitle("Move Left", for: .normal)
-            button.frame = CGRect(x: 50, y: 100, width: 200, height: 50)
-            button.addTarget(self, action: #selector(buttonPressed), for: .touchDown)
-            button.addTarget(self, action: #selector(buttonReleased), for: [.touchUpInside, .touchUpOutside])
+            let moveLeftButton = UIButton(type: .system)
+            moveLeftButton.setTitle("Move Left", for: .normal)
+            moveLeftButton.frame = CGRect(x: 50, y: 100, width: 200, height: 50)
+            moveLeftButton.addTarget(self, action: #selector(moveLeftPressed), for: .touchDown)
+            moveLeftButton.addTarget(self, action: #selector(moveLeftReleased), for: [.touchUpInside, .touchUpOutside])
+        
+        let moveRightButton = UIButton(type: .system)
+        moveRightButton.setTitle("Move Right", for: .normal)
+        moveRightButton.frame = CGRect(x: 50, y: 150, width: 200, height: 50)
+        moveRightButton.addTarget(self, action: #selector(moveRightPressed), for: .touchDown)
+        moveRightButton.addTarget(self, action: #selector(moveRightReleased), for: [.touchUpInside, .touchUpOutside])
             
             if let gameView = view {
-                gameView.addSubview(button)
+                gameView.addSubview(moveLeftButton)
+                gameView.addSubview(moveRightButton)
             }
         }
     
-    @objc func buttonPressed() {
+    @objc func moveLeftPressed() {
             moveLeft = true
         }
         
-        @objc func buttonReleased() {
+        @objc func moveLeftReleased() {
             moveLeft = false
         }
+  
+    @objc func moveRightPressed() {
+        moveRight = true
+    }
+
+    @objc func moveRightReleased() {
+        moveRight = false
+    }
     
     func makePlayer() {
         player.removeFromParent()
@@ -76,7 +92,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Move player left if the button is pressed
             if moveLeft {
                 player.physicsBody?.velocity = CGVector(dx: -100, dy: 0)  // Adjust the velocity as needed
-            } else {
+            } 
+        else if moveRight {
+            player.physicsBody?.velocity = CGVector(dx: 100, dy: 0)  // Adjust the velocity as needed
+        }
+        else {
                 player.physicsBody?.velocity = CGVector(dx: 0, dy: 0)  // Stop player if button is released
             }
             
