@@ -9,23 +9,22 @@ import SpriteKit
 import GameplayKit
 
 class HowToScreen: SKScene, SKPhysicsContactDelegate {
-    private var label : SKLabelNode?
     override func didMove(to view: SKView) {
         createBackground()
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
+        
     }
-    func createBackground() {
-        let imageName = "IMG_0981"
-        let rock = SKTexture (imageNamed: imageName)
-        for i in 0...1 {
-            let rockBackground = SKSpriteNode (texture: rock)
-            let scaleX = size.width / rockBackground.size.width
-            let scaleY = size.height / rockBackground.size.height
-            let scaleFactor = max(scaleX, scaleY)
-            rockBackground.setScale(scaleFactor)
-            rockBackground.zPosition = -1
-            rockBackground.position = CGPoint(x: 0, y: rockBackground.size.height * CGFloat (i))
-            addChild(rockBackground)
+        func createBackground() {
+            let imageName = "IMG_0981"
+            let rock = SKTexture (imageNamed: imageName)
+            for i in 0...1 {
+                let rockBackground = SKSpriteNode (texture: rock)
+                let scaleX = size.width / rockBackground.size.width
+                let scaleY = size.height / rockBackground.size.height
+                let scaleFactor = max(scaleX, scaleY)
+                rockBackground.setScale(scaleFactor)
+                rockBackground.zPosition = -1
+                rockBackground.position = CGPoint(x: 0, y: rockBackground.size.height * CGFloat (i))
+                addChild(rockBackground)
+            }
         }
     }
-}
