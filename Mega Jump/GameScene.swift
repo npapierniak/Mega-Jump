@@ -45,7 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createBlocks()
     }
     func createBlocks(){
-        makeBlock(x: 0, y: -100, w : 180, h : 20)
+        makeBlock(x: 0, y: -150, w : 180, h : 20)
     }
     func addControlButton() {
         let moveLeftButton = UIButton(type: .system)
@@ -107,7 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody = SKPhysicsBody(rectangleOf: playerSize)
         player.position = CGPoint(x: frame.midX, y: frame.midY)
         player.physicsBody?.friction = 0.8
-        player.physicsBody?.restitution = 0.0
+        player.physicsBody?.restitution = 0
 
         
         player.physicsBody?.affectedByGravity = true
@@ -125,7 +125,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         block.name = "Block"
         block.physicsBody = SKPhysicsBody (rectangleOf: block.size)
         block.physicsBody?.isDynamic = false
-        player.physicsBody?.restitution = 0.0
+
         addChild(block)
     }
     
