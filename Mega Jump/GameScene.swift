@@ -21,20 +21,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var w = 0
     var h = 0
     var block = SKSpriteNode()
-    
-    
     override func didMove(to view: SKView) {
         //this stuff happens when game opens
-        self.physicsBody?.restitution = 0.0
         let extendedFrame = CGRect(x: frame.origin.x - 500,
                                    y: frame.origin.y - 50,
                                    width: frame.size.width + 1000,
                                    height: frame.size.height + 100)
+        
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: extendedFrame)
+        physicsWorld.contactDelegate = self
+        physicsBody?.restitution = 0.0
+        
         camera = gameCamera
         addChild(gameCamera)
         
-        physicsWorld.contactDelegate = self
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: extendedFrame)
         resetGame()
     }
     
@@ -62,9 +62,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         let jumpButton = UIButton(type: .system)
-            jumpButton.setTitle("Jump", for: .normal)
-            jumpButton.frame = CGRect(x: 600, y: 200, width: 200, height: 50)
-            jumpButton.addTarget(self, action: #selector(jumpPressed), for: .touchDown)
+        jumpButton.setTitle("Jump", for: .normal)
+        jumpButton.frame = CGRect(x: 630, y: 200, width: 200, height: 50)
+        jumpButton.addTarget(self, action: #selector(jumpPressed), for: .touchDown)
         
         if let gameView = view {
             gameView.addSubview(moveLeftButton)
@@ -91,7 +91,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func jumpPressed() {
         if jump {
-            player.physicsBody?.applyForce(CGVector(dx: 0, dy: 2600))
+            player.physicsBody?.applyForce(CGVector(dx: 0, dy: 2500))
             jump = false
         }
     }
@@ -106,8 +106,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player.physicsBody = SKPhysicsBody(rectangleOf: playerSize)
         player.position = CGPoint(x: frame.midX, y: frame.midY)
-        player.physicsBody?.restitution = 0
-
+        player.physicsBody?.restitution = 0.0
+        
         
         player.physicsBody?.affectedByGravity = true
         
@@ -124,7 +124,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         block.name = "Block"
         block.physicsBody = SKPhysicsBody (rectangleOf: block.size)
         block.physicsBody?.isDynamic = false
-        block.physicsBody?.restitution = 0
+        player.physicsBody?.restitution = 0.0
+        
         addChild(block)
     }
     
@@ -149,5 +150,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         gameCamera.position = player.position
     }
-    
 }
