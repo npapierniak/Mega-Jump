@@ -21,6 +21,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var w = 0
     var h = 0
     var block = SKSpriteNode()
+    var winBlock = SKSpriteNode()
+    var playingGame = false
+    var playLabel = SKLabelNode ()
     override func didMove(to view: SKView) {
         //this stuff happens when game opens
         let extendedFrame = CGRect(x: frame.origin.x - 500,
@@ -43,9 +46,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makePlayer()
         addControlButton()
         createBlocks()
+        makeWinBlock()
     }
     func createBlocks(){
         makeBlock(x: 0, y: -150, w : 180, h : 20)
+        makeBlock(x: -150, y: -150, w : 180, h : 20)
     }
     func addControlButton() {
         let moveLeftButton = UIButton(type: .system)
@@ -91,11 +96,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func jumpPressed() {
         if jump {
-            player.physicsBody?.applyForce(CGVector(dx: 0, dy: 2500))
-            jump = false
+            player.physicsBody?.applyForce(CGVector(dx: 0, dy: 2600))
         }
     }
-    
+    func makeWinBlock() {
+        winBlock = SKSpriteNode(color: .green, size: CGSize(width: 200, height: 30))
+        winBlock.position = CGPoint(x: 200, y: -75)
+        winBlock.name = "winBlock"
+        winBlock.physicsBody = SKPhysicsBody (rectangleOf: winBlock.size)
+        winBlock.physicsBody?.isDynamic = false
+        addChild(winBlock)
+    }
     func makePlayer() {
         player.removeFromParent()
         
@@ -105,10 +116,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         player.physicsBody = SKPhysicsBody(rectangleOf: playerSize)
-        player.position = CGPoint(x: frame.midX, y: frame.midY)
+        player.position = CGPoint(x: -200, y: -100)
         player.physicsBody?.restitution = 0.0
         
-        
+        player.physicsBody?.contactTestBitMask = (player.physicsBody?.collisionBitMask)!
         player.physicsBody?.affectedByGravity = true
         
         
@@ -117,14 +128,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     func makeBlock(x: CGFloat, y: CGFloat, w : CGFloat, h : CGFloat) {
         let leather = SKTexture(imageNamed: "images-3")
-        block.removeFromParent ()
         block = SKSpriteNode(texture: leather, size: CGSize(width: w, height: h))
         
         block.position = CGPoint(x: x, y: y)
         block.name = "Block"
         block.physicsBody = SKPhysicsBody (rectangleOf: block.size)
         block.physicsBody?.isDynamic = false
-        player.physicsBody?.restitution = 0.0
+        block.physicsBody?.restitution = 0.0
         
         addChild(block)
     }
@@ -146,8 +156,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         else {
             player.physicsBody?.velocity.dx = 0
         }
-       
+        
         
         gameCamera.position = player.position
+    }
+    func didBegin(_ contact: SKPhysicsContact) {
+        if contact.bodyA.node?.name ==
+            "winBlock" ||
+            contact.bodyB.node?.name == "winBlock"{
+            gameOver(winner: false)
+        }
+    }
+    func gameOver (winner: Bool) {
+        playingGame = false
+        playLabel.alpha = 1
+        resetGame()
+        if winner {
+            playLabel.text = "You win! Tap to play again"
+        }
     }
 }
