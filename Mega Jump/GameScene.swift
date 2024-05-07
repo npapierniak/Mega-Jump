@@ -45,7 +45,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createBlocks()
     }
     func createBlocks(){
-        makeBlock(x: 0, y: -100, w : 180, h : 20)
+        makeBlock(x: 0, y: -150, w : 180, h : 20)
     }
     func addControlButton() {
         let moveLeftButton = UIButton(type: .system)
@@ -63,7 +63,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let jumpButton = UIButton(type: .system)
             jumpButton.setTitle("Jump", for: .normal)
-            jumpButton.frame = CGRect(x: 50, y: 200, width: 200, height: 50)
+            jumpButton.frame = CGRect(x: 600, y: 200, width: 200, height: 50)
             jumpButton.addTarget(self, action: #selector(jumpPressed), for: .touchDown)
         
         if let gameView = view {
@@ -106,8 +106,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player.physicsBody = SKPhysicsBody(rectangleOf: playerSize)
         player.position = CGPoint(x: frame.midX, y: frame.midY)
-        player.physicsBody?.friction = 0.8
-        player.physicsBody?.restitution = 0.0
+        player.physicsBody?.restitution = 0
 
         
         player.physicsBody?.affectedByGravity = true
@@ -125,22 +124,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         block.name = "Block"
         block.physicsBody = SKPhysicsBody (rectangleOf: block.size)
         block.physicsBody?.isDynamic = false
-        player.physicsBody?.restitution = 0.0
+        block.physicsBody?.restitution = 0
         addChild(block)
     }
     
-    override func update(_ currentTime: TimeInterval) {
+    override func update (_ currentTime: TimeInterval) {
+        
         
         if (player.physicsBody?.velocity.dy == 0) {
             jump = true
         }
         
+        
         if moveLeft {
-            player.physicsBody?.applyForce(CGVector(dx: -100, dy: 0))
+            player.physicsBody?.velocity.dx = -250
         }
         else if moveRight {
-            player.physicsBody?.applyForce(CGVector(dx: 100, dy: 0))
+            player.physicsBody?.velocity.dx = 250
         }
+        else {
+            player.physicsBody?.velocity.dx = 0
+        }
+       
         
         gameCamera.position = player.position
     }
