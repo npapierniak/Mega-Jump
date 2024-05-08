@@ -22,8 +22,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var h = 0
     var block = SKSpriteNode()
     var winBlock = SKSpriteNode()
+    var platform = SKSpriteNode()
     var playingGame = false
-    var playLabel = SKLabelNode ()
+    var playLabel = SKLabelNode()
+    var startScene: SKScene!
+    var moveLeftButton = UIButton()
+    var moveRightButton = UIButton()
+    var jumpButton = UIButton()
     override func didMove(to view: SKView) {
         //this stuff happens when game opens
         let extendedFrame = CGRect(x: frame.origin.x - 500,
@@ -48,9 +53,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createBlocks()
         makeWinBlock()
     }
+    func removeAllButtons() {
+        if let gameView = view {
+            for subview in gameView.subviews {
+                if let button = subview as? UIButton {
+                    button.removeFromSuperview()
+                }
+            }
+        }
+    }
     func createBlocks(){
         makeBlock(x: 0, y: -150, w : 180, h : 20)
-        makeBlock(x: -150, y: -150, w : 180, h : 20)
+        makeBlock(x: -220, y: -210, w : 180, h : 20)
     }
     func addControlButton() {
         let moveLeftButton = UIButton(type: .system)
@@ -102,10 +116,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func makeWinBlock() {
         winBlock = SKSpriteNode(color: .green, size: CGSize(width: 200, height: 30))
         winBlock.position = CGPoint(x: 200, y: -75)
-        winBlock.name = "winBlock"
         winBlock.physicsBody = SKPhysicsBody (rectangleOf: winBlock.size)
         winBlock.physicsBody?.isDynamic = false
+        platform = SKSpriteNode(color: .black, size: CGSize(width: 50, height: 15))
+        platform.position = CGPoint(x: 200, y: -50)
+        platform.name = "winBlock"
+        platform.physicsBody = SKPhysicsBody (rectangleOf: platform.size)
+        platform.physicsBody?.isDynamic = false
         addChild(winBlock)
+        addChild(platform)
     }
     func makePlayer() {
         player.removeFromParent()
@@ -116,7 +135,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         player.physicsBody = SKPhysicsBody(rectangleOf: playerSize)
-        player.position = CGPoint(x: -200, y: -100)
+        player.position = CGPoint(x: -400, y: -200)
         player.physicsBody?.restitution = 0.0
         
         player.physicsBody?.contactTestBitMask = (player.physicsBody?.collisionBitMask)!
@@ -170,9 +189,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func gameOver (winner: Bool) {
         playingGame = false
         playLabel.alpha = 1
-        resetGame()
-        if winner {
-            playLabel.text = "You win! Tap to play again"
-        }
+        let transition = SKTransition.fade(withDuration: 1)
+        startScene = SKScene(fileNamed: "StartScene")
+        self.view?.presentScene(startScene, transition: transition)
+        removeAllButtons()
     }
 }

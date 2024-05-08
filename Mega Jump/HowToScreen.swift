@@ -21,6 +21,7 @@ class HowToScreen: SKScene, SKPhysicsContactDelegate {
     var leftLabel = SKLabelNode ()
     var rightLabel = SKLabelNode ()
     var jumpLabel = SKLabelNode ()
+    var startScene: SKScene!
     override func didMove(to view: SKView) {
         createBackground()
         physicsWorld.contactDelegate = self
@@ -37,8 +38,8 @@ class HowToScreen: SKScene, SKPhysicsContactDelegate {
         makeLabels()
     }
     func createBlocks(){
-        makeBlock(x: -100, y: -140, w : 180, h : 20)
-        makeBlock(x: 100, y: -40, w : 160, h : 20)
+        makeBlock(x: -140, y: -140, w : 180, h : 20)
+        makeBlock(x: 80, y: -40, w : 160, h : 20)
     }
     func addControlButton() {
         let moveLeftButton = UIButton(type: .system)
@@ -59,10 +60,16 @@ class HowToScreen: SKScene, SKPhysicsContactDelegate {
         jumpButton.frame = CGRect(x: 630, y: 200, width: 200, height: 50)
         jumpButton.addTarget(self, action: #selector(jumpPressed), for: .touchDown)
         
+        let back = UIButton(type: .system)
+        back.setTitle("Main Screen", for: .normal)
+        back.frame = CGRect(x: -10, y: 50, width: 200, height: 50)
+        back.addTarget(self, action: #selector(backButton), for: .touchDown)
+        
         if let gameView = view {
             gameView.addSubview(moveLeftButton)
             gameView.addSubview(moveRightButton)
             gameView.addSubview(jumpButton)
+            gameView.addSubview(back)
         }
     }
     
@@ -84,8 +91,7 @@ class HowToScreen: SKScene, SKPhysicsContactDelegate {
     
     @objc func jumpPressed() {
         if jump {
-            player.physicsBody?.applyForce(CGVector(dx: 0, dy: 2500))
-            jump = false
+            player.physicsBody?.applyForce(CGVector(dx: 0, dy: 2600))
         }
     }
     
@@ -166,6 +172,22 @@ class HowToScreen: SKScene, SKPhysicsContactDelegate {
             rockBackground.zPosition = -1
             rockBackground.position = CGPoint(x: 0, y: rockBackground.size.height * CGFloat (i))
             addChild(rockBackground)
+        }
+    }
+    @objc func backButton() {
+        removeAllButtons()
+        let transition = SKTransition.fade(withDuration: 1)
+        startScene = SKScene(fileNamed: "StartScene")
+        self.view?.presentScene(startScene, transition: transition)
+        
+    }
+    func removeAllButtons() {
+        if let gameView = view {
+            for subview in gameView.subviews {
+                if let button = subview as? UIButton {
+                    button.removeFromSuperview()
+                }
+            }
         }
     }
 }
