@@ -97,6 +97,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     @objc func jumpPressed() {
         if jump {
             player.physicsBody?.applyForce(CGVector(dx: 0, dy: 2600))
+
+            jump = false
+
         }
     }
     func makeWinBlock() {
