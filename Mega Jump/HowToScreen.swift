@@ -134,10 +134,13 @@ class HowToScreen: SKScene, SKPhysicsContactDelegate {
         }
         
         if moveLeft {
-            player.physicsBody?.velocity.dx = -200
+            player.physicsBody?.velocity.dx = -250
         }
         else if moveRight {
-            player.physicsBody?.velocity.dx = 200
+            player.physicsBody?.velocity.dx = 250
+        }
+        else {
+            player.physicsBody?.velocity.dx = 0
         }
     }
     func makeLabels() {
