@@ -27,20 +27,21 @@ class HowToScreen: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
-        
         resetGame()
     }
+    
     func resetGame() {
-        //this stuff happens before every game
         makePlayer()
         addControlButton()
         createBlocks()
         makeLabels()
     }
+    
     func createBlocks(){
         makeBlock(x: -140, y: -140, w : 180, h : 20)
         makeBlock(x: 80, y: -40, w : 160, h : 20)
     }
+    
     func addControlButton() {
         let moveLeftButton = UIButton(type: .system)
         moveLeftButton.setTitle("Move Left", for: .normal)
@@ -143,6 +144,7 @@ class HowToScreen: SKScene, SKPhysicsContactDelegate {
             player.physicsBody?.velocity.dx = 0
         }
     }
+    
     func makeLabels() {
         leftLabel.fontSize = 20
         leftLabel.text = "Move left"
@@ -163,6 +165,7 @@ class HowToScreen: SKScene, SKPhysicsContactDelegate {
         jumpLabel.position = CGPoint(x: frame.maxX - 50, y: frame.minY + 18)
         addChild(jumpLabel)
     }
+    
     func createBackground() {
         let imageName = "IMG_0981"
         let rock = SKTexture (imageNamed: imageName)
@@ -177,13 +180,14 @@ class HowToScreen: SKScene, SKPhysicsContactDelegate {
             addChild(rockBackground)
         }
     }
+    
     @objc func backButton() {
         removeAllButtons()
         let transition = SKTransition.fade(withDuration: 1)
         startScene = SKScene(fileNamed: "StartScene")
         self.view?.presentScene(startScene, transition: transition)
-        
     }
+    
     func removeAllButtons() {
         if let gameView = view {
             for subview in gameView.subviews {

@@ -29,12 +29,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var moveLeftButton = UIButton()
     var moveRightButton = UIButton()
     var jumpButton = UIButton()
+    
     override func didMove(to view: SKView) {
-        //this stuff happens when game opens
-        let extendedFrame = CGRect(x: frame.origin.x - 500,
-                                   y: frame.origin.y - 50,
-                                   width: frame.size.width + 1000,
-                                   height: frame.size.height + 100)
+        let extendedFrame = CGRect(
+            x: frame.origin.x - 500,
+            y: frame.origin.y - 50,
+            width: frame.size.width + 1000,
+            height: frame.size.height + 100
+        )
         
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: extendedFrame)
         physicsWorld.contactDelegate = self
@@ -88,10 +90,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         jumpButton.frame = CGRect(x: 630, y: 200, width: 200, height: 50)
         jumpButton.addTarget(self, action: #selector(jumpPressed), for: .touchDown)
         
+        let back = UIButton(type: .system)
+        back.setTitle("Main Screen", for: .normal)
+        back.frame = CGRect(x: -10, y: 50, width: 200, height: 50)
+        back.addTarget(self, action: #selector(backButton), for: .touchDown)
+        
         if let gameView = view {
             gameView.addSubview(moveLeftButton)
             gameView.addSubview(moveRightButton)
             gameView.addSubview(jumpButton)
+            gameView.addSubview(back)
         }
     }
     
@@ -115,6 +123,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if jump {
             player.physicsBody?.applyForce(CGVector(dx: 0, dy: 2600))
         }
+    }
+    
+    @objc func backButton() {
+        removeAllButtons()
+        let transition = SKTransition.fade(withDuration: 1)
+        startScene = SKScene(fileNamed: "StartScene")
+        self.view?.presentScene(startScene, transition: transition)
+        
     }
     
     func makeWinBlock() {
