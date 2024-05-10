@@ -64,8 +64,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createBlocks(){
-        makeBlock(x: 0, y: -150, w : 180, h : 20, loseBlock: false)
-        makeBlock(x: -220, y: -210, w : 180, h : 20, loseBlock: true)
+        makeBlock(x: -120, y: -150, w : 180, h : 20, loseBlock: false)
+        makeBlock(x: -400, y: -210, w : 180, h : 20, loseBlock: false)
+        makeBlock(x: 125, y: -200, w : 180, h : 20, loseBlock: true)
     }
     
     func addControlButton() {
@@ -113,7 +114,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     @objc func jumpPressed() {
         if jump {
             player.physicsBody?.applyForce(CGVector(dx: 0, dy: 2600))
-            jump = false
         }
     }
     
@@ -140,7 +140,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         player.physicsBody = SKPhysicsBody(rectangleOf: playerSize)
-        player.position = CGPoint(x: -400, y: -200)
+        player.position = CGPoint(x: -700, y: -200)
         player.physicsBody?.restitution = 0.0
         
         player.physicsBody?.contactTestBitMask = (player.physicsBody?.collisionBitMask)!
