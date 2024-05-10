@@ -68,7 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createBlocks(){
         makeBlock(x: -120, y: -150, w : 180, h : 20, loseBlock: false)
         makeBlock(x: -400, y: -210, w : 180, h : 20, loseBlock: false)
-        makeBlock(x: 125, y: -200, w : 180, h : 20, loseBlock: true)
+        makeBlock(x: 125, y: -200, w : 220, h : 20, loseBlock: true)
     }
     
     func addControlButton() {
@@ -135,11 +135,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func makeWinBlock() {
         winBlock = SKSpriteNode(color: .green, size: CGSize(width: 200, height: 30))
-        winBlock.position = CGPoint(x: 200, y: -75)
+        winBlock.position = CGPoint(x: 248, y: -75)
         winBlock.physicsBody = SKPhysicsBody (rectangleOf: winBlock.size)
         winBlock.physicsBody?.isDynamic = false
         platform = SKSpriteNode(color: .black, size: CGSize(width: 50, height: 15))
-        platform.position = CGPoint(x: 200, y: -50)
+        platform.position = CGPoint(x: 248, y: -50)
         platform.name = "winBlock"
         platform.physicsBody = SKPhysicsBody (rectangleOf: platform.size)
         platform.physicsBody?.isDynamic = false

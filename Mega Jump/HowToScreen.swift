@@ -34,7 +34,6 @@ class HowToScreen: SKScene, SKPhysicsContactDelegate {
         makePlayer()
         addControlButton()
         createBlocks()
-        makeLabels()
     }
     
     func createBlocks(){
