@@ -47,12 +47,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func resetGame() {
-        //this stuff happens before every game
         makePlayer()
         addControlButton()
         createBlocks()
         makeWinBlock()
     }
+    
     func removeAllButtons() {
         if let gameView = view {
             for subview in gameView.subviews {
@@ -62,10 +62,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    
     func createBlocks(){
-        makeBlock(x: 0, y: -150, w : 180, h : 20)
-        makeBlock(x: -220, y: -210, w : 180, h : 20)
+        makeBlock(x: 0, y: -150, w : 180, h : 20, loseBlock: false)
+        makeBlock(x: -220, y: -210, w : 180, h : 20, loseBlock: true)
     }
+    
     func addControlButton() {
         let moveLeftButton = UIButton(type: .system)
         moveLeftButton.setTitle("Move Left", for: .normal)
@@ -111,11 +113,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     @objc func jumpPressed() {
         if jump {
             player.physicsBody?.applyForce(CGVector(dx: 0, dy: 2600))
-
             jump = false
-
         }
     }
+    
     func makeWinBlock() {
         winBlock = SKSpriteNode(color: .green, size: CGSize(width: 200, height: 30))
         winBlock.position = CGPoint(x: 200, y: -75)
@@ -129,6 +130,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(winBlock)
         addChild(platform)
     }
+    
     func makePlayer() {
         player.removeFromParent()
         
@@ -148,26 +150,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(player)
         
     }
-    func makeBlock(x: CGFloat, y: CGFloat, w : CGFloat, h : CGFloat) {
+    
+    func makeBlock(x: CGFloat, y: CGFloat, w: CGFloat, h: CGFloat, loseBlock: Bool) {
         let leather = SKTexture(imageNamed: "images-3")
-        block = SKSpriteNode(texture: leather, size: CGSize(width: w, height: h))
+        let red = SKTexture(imageNamed: "red-abstract-textured-grunge-web-background-vector")
         
-        block.position = CGPoint(x: x, y: y)
-        block.name = "Block"
-        block.physicsBody = SKPhysicsBody (rectangleOf: block.size)
-        block.physicsBody?.isDynamic = false
-        block.physicsBody?.restitution = 0.0
-        
+        if loseBlock {
+            block = SKSpriteNode(texture: red, size: CGSize(width: w, height: h))
+            block.name = "loseBlock"
+            block.position = CGPoint(x: x, y: y)
+            block.physicsBody = SKPhysicsBody (rectangleOf: block.size)
+            block.physicsBody?.isDynamic = false
+            block.physicsBody?.restitution = 0.0
+        }
+        else {
+            block = SKSpriteNode(texture: leather, size: CGSize(width: w, height: h))
+            block.position = CGPoint(x: x, y: y)
+            block.name = "Block"
+            block.physicsBody = SKPhysicsBody (rectangleOf: block.size)
+            block.physicsBody?.isDynamic = false
+            block.physicsBody?.restitution = 0.0
+        }
         addChild(block)
     }
     
     override func update (_ currentTime: TimeInterval) {
         
-        
         if (player.physicsBody?.velocity.dy == 0) {
             jump = true
         }
-        
         
         if moveLeft {
             player.physicsBody?.velocity.dx = -250
@@ -179,16 +190,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.physicsBody?.velocity.dx = 0
         }
         
-        
         gameCamera.position = player.position
     }
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name ==
-            "winBlock" ||
-            contact.bodyB.node?.name == "winBlock"{
+        
+        if contact.bodyA.node?.name == "winBlock" || contact.bodyB.node?.name == "winBlock" {
             gameOver(winner: false)
         }
+        
+        if contact.bodyA.node?.name == "loseBlock" || contact.bodyB.node?.name == "loseBlock" {
+            resetGame()
+        }
     }
+    
     func gameOver (winner: Bool) {
         playingGame = false
         playLabel.alpha = 1
