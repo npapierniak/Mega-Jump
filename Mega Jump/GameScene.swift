@@ -29,7 +29,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var moveLeftButton = UIButton()
     var moveRightButton = UIButton()
     var jumpButton = UIButton()
-    
     override func didMove(to view: SKView) {
         let extendedFrame = CGRect(
             x: frame.origin.x - 500,
@@ -84,7 +83,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveRightButton.addTarget(self, action: #selector(moveRightPressed), for: .touchDown)
         moveRightButton.addTarget(self, action: #selector(moveRightReleased), for: [.touchUpInside, .touchUpOutside])
         
-        
         let jumpButton = UIButton(type: .system)
         jumpButton.setTitle("Jump", for: .normal)
         jumpButton.frame = CGRect(x: 630, y: 200, width: 200, height: 50)
@@ -130,7 +128,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let transition = SKTransition.fade(withDuration: 1)
         startScene = SKScene(fileNamed: "StartScene")
         self.view?.presentScene(startScene, transition: transition)
-        
     }
     
     func makeWinBlock() {
@@ -149,22 +146,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func makePlayer() {
         player.removeFromParent()
-        
-        
         let playerSize = CGSize(width: 40, height: 40)
         player = SKSpriteNode(color: .red, size: playerSize)
-        
-        
         player.physicsBody = SKPhysicsBody(rectangleOf: playerSize)
         player.position = CGPoint(x: -700, y: -200)
         player.physicsBody?.restitution = 0.0
-        
         player.physicsBody?.contactTestBitMask = (player.physicsBody?.collisionBitMask)!
         player.physicsBody?.affectedByGravity = true
-        
-        
         addChild(player)
-        
     }
     
     func makeBlock(x: CGFloat, y: CGFloat, w: CGFloat, h: CGFloat, loseBlock: Bool) {
@@ -191,7 +180,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update (_ currentTime: TimeInterval) {
-        
         if (player.physicsBody?.velocity.dy == 0) {
             jump = true
         }
@@ -208,6 +196,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         gameCamera.position = player.position
     }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         
         if contact.bodyA.node?.name == "winBlock" || contact.bodyB.node?.name == "winBlock" {
