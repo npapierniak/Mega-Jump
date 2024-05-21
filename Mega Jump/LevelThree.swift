@@ -137,7 +137,7 @@ class LevelThree: SKScene, SKPhysicsContactDelegate {
     @objc func backButton() {
         removeAllButtons()
         let transition = SKTransition.fade(withDuration: 1)
-        startScene = SKScene(fileNamed: "StartScene")
+        startScene = SKScene(fileNamed: "LevelScreen")
         self.view?.presentScene(startScene, transition: transition)
     }
 

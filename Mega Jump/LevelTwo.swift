@@ -29,10 +29,10 @@ class LevelTwo: SKScene, SKPhysicsContactDelegate {
     var jumpButton = UIButton()
     override func didMove(to view: SKView) {
         let extendedFrame = CGRect(
-            x: frame.origin.x - 500,
-            y: frame.origin.y - 50,
-            width: frame.size.width + 1000,
-            height: frame.size.height + 100
+            x: frame.origin.x - 1000,
+            y: frame.origin.y - 200,
+            width: frame.size.width + 2000,
+            height: frame.size.height + 400
         )
         
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: extendedFrame)
@@ -63,17 +63,28 @@ class LevelTwo: SKScene, SKPhysicsContactDelegate {
     }
     
     func createBlocks(){
-        makeBlock(x: -120, y: -150, w : 180, h : 20, loseBlock: false)
-        makeBlock(x: -400, y: -210, w : 180, h : 20, loseBlock: false)
-        makeBlock(x: 125, y: -200, w : 220, h : 20, loseBlock: true)
+        makeBlock(x: -190, y: -290, w : 55, h : 20, loseBlock: false)
+        makeBlock(x: -190, y: 80, w : 55, h : 20, loseBlock: false)
+        makeBlock(x: 190, y: 80, w : 55, h : 20, loseBlock: false)
+        makeBlock(x: -190, y: -90, w : 55, h : 20, loseBlock: false)
+        makeBlock(x: 190, y: -90, w : 55, h : 20, loseBlock: false)
+        makeBlock(x: 0, y: -190, w : 55, h : 20, loseBlock: false)
+        makeBlock(x: 0, y: -10, w : 55, h : 20, loseBlock: false)
+        makeBlock(x: 190, y: -290, w : 55, h : 20, loseBlock: false)
+        makeBlock(x: -225, y: -150, w : 20, h : 200, loseBlock: true)
+        makeBlock(x: 225, y: -150, w : 20, h : 200, loseBlock: true)
+        makeBlock(x: -225, y: 0, w : 20, h : 200, loseBlock: true)
+        makeBlock(x: 225, y: 0, w : 20, h : 200, loseBlock: true)
+        makeBlock(x: -225, y: -300, w : 20, h : 200, loseBlock: true)
+        makeBlock(x: 225, y: -300, w : 20, h : 200, loseBlock: true)
     }
     func makeWinBlock() {
         winBlock = SKSpriteNode(color: .green, size: CGSize(width: 200, height: 30))
-        winBlock.position = CGPoint(x: 248, y: -75)
+        winBlock.position = CGPoint(x: 450, y: -75)
         winBlock.physicsBody = SKPhysicsBody (rectangleOf: winBlock.size)
         winBlock.physicsBody?.isDynamic = false
         platform = SKSpriteNode(color: .black, size: CGSize(width: 50, height: 15))
-        platform.position = CGPoint(x: 248, y: -50)
+        platform.position = CGPoint(x: 450, y: -50)
         platform.name = "winBlock"
         platform.physicsBody = SKPhysicsBody (rectangleOf: platform.size)
         platform.physicsBody?.isDynamic = false
@@ -137,7 +148,7 @@ class LevelTwo: SKScene, SKPhysicsContactDelegate {
     @objc func backButton() {
         removeAllButtons()
         let transition = SKTransition.fade(withDuration: 1)
-        startScene = SKScene(fileNamed: "StartScene")
+        startScene = SKScene(fileNamed: "LevelScreen")
         self.view?.presentScene(startScene, transition: transition)
     }
     
@@ -146,7 +157,7 @@ class LevelTwo: SKScene, SKPhysicsContactDelegate {
         let playerSize = CGSize(width: 40, height: 40)
         player = SKSpriteNode(color: .red, size: playerSize)
         player.physicsBody = SKPhysicsBody(rectangleOf: playerSize)
-        player.position = CGPoint(x: -700, y: -200)
+        player.position = CGPoint(x: 0, y: -350)
         player.physicsBody?.restitution = 0.0
         player.physicsBody?.contactTestBitMask = (player.physicsBody?.collisionBitMask)!
         player.physicsBody?.affectedByGravity = true
