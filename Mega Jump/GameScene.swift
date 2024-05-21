@@ -136,7 +136,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         winBlock.physicsBody = SKPhysicsBody (rectangleOf: winBlock.size)
         winBlock.physicsBody?.isDynamic = false
         platform = SKSpriteNode(color: .black, size: CGSize(width: 50, height: 15))
-        platform.position = CGPoint(x: 248, y: -50)
+        platform.position = CGPoint(x: 248, y: -52)
         platform.name = "winBlock"
         platform.physicsBody = SKPhysicsBody (rectangleOf: platform.size)
         platform.physicsBody?.isDynamic = false

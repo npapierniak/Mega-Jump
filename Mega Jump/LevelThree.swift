@@ -29,10 +29,10 @@ class LevelThree: SKScene, SKPhysicsContactDelegate {
     var jumpButton = UIButton()
     override func didMove(to view: SKView) {
         let extendedFrame = CGRect(
-            x: frame.origin.x - 500,
-            y: frame.origin.y - 50,
-            width: frame.size.width + 1000,
-            height: frame.size.height + 100
+            x: frame.origin.x - 1500,
+            y: frame.origin.y - 100,
+            width: frame.size.width + 3000,
+            height: frame.size.height + 200
         )
         
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: extendedFrame)
@@ -63,17 +63,24 @@ class LevelThree: SKScene, SKPhysicsContactDelegate {
     }
     
     func createBlocks(){
-        makeBlock(x: -120, y: -150, w : 180, h : 20, loseBlock: false)
-        makeBlock(x: -400, y: -210, w : 180, h : 20, loseBlock: false)
-        makeBlock(x: 125, y: -200, w : 220, h : 20, loseBlock: true)
+        makeBlock(x: -25, y: 75, w : 140, h : 20, loseBlock: false)//spawn
+        makeBlock(x: 200, y: -75, w : 140, h : 20, loseBlock: false)//leading towards "win"
+        makeBlock(x: -300, y: -150, w : 140, h : 20, loseBlock: false)//first left box
+        makeBlock(x: -550, y: -75, w : 140, h : 20, loseBlock: false)
+        makeBlock(x: -850, y: -250, w : 140, h : 20, loseBlock: false)
+        makeBlock(x: -1150, y: -250, w : 120, h : 20, loseBlock: false)
+        makeBlock(x: -1350, y: -165, w : 120, h : 20, loseBlock: false)
+        
+        
+        makeBlock(x: -250, y: -300, w : 3000, h : 20, loseBlock: true)//bottom of screen
     }
     func makeWinBlock() {
         winBlock = SKSpriteNode(color: .green, size: CGSize(width: 200, height: 30))
-        winBlock.position = CGPoint(x: 248, y: -75)
+        winBlock.position = CGPoint(x: -1150, y: -90)
         winBlock.physicsBody = SKPhysicsBody (rectangleOf: winBlock.size)
         winBlock.physicsBody?.isDynamic = false
         platform = SKSpriteNode(color: .black, size: CGSize(width: 50, height: 15))
-        platform.position = CGPoint(x: 248, y: -50)
+        platform.position = CGPoint(x: -1150, y: -65)
         platform.name = "winBlock"
         platform.physicsBody = SKPhysicsBody (rectangleOf: platform.size)
         platform.physicsBody?.isDynamic = false
@@ -146,7 +153,7 @@ class LevelThree: SKScene, SKPhysicsContactDelegate {
         let playerSize = CGSize(width: 40, height: 40)
         player = SKSpriteNode(color: .red, size: playerSize)
         player.physicsBody = SKPhysicsBody(rectangleOf: playerSize)
-        player.position = CGPoint(x: -700, y: -200)
+        player.position = CGPoint(x: -25, y: 100)
         player.physicsBody?.restitution = 0.0
         player.physicsBody?.contactTestBitMask = (player.physicsBody?.collisionBitMask)!
         player.physicsBody?.affectedByGravity = true
