@@ -205,12 +205,24 @@ class LevelThree: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func addBack()
+    {
+        let back = UIButton(type: .system)
+        back.setTitle("Back", for: .normal)
+        back.frame = CGRect(x: -10, y: 50, width: 200, height: 50)
+        back.addTarget(self, action: #selector(backButton), for: .touchDown)
+        if let gameView = view {
+            gameView.addSubview(back)
+        }
+    }
+    
     func gameOver (winner: Bool) {
         playingGame = false
         playLabel.alpha = 1
+        removeAllButtons()
+        addBack()
         let transition = SKTransition.fade(withDuration: 1)
         startScene = SKScene(fileNamed: "LevelScreen")
         self.view?.presentScene(startScene, transition: transition)
-        removeAllButtons()
     }
 }
