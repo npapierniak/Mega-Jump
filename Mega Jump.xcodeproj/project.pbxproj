@@ -10,6 +10,8 @@
 		EF2812DF2BD2BB4200E11CE9 /* StartScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EF2812DE2BD2BB4200E11CE9 /* StartScene.sks */; };
 		EF2812E32BDD82FE00E11CE9 /* HowToScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EF2812E22BDD82FE00E11CE9 /* HowToScene.sks */; };
 		EF2812E72BDD837F00E11CE9 /* HowToScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2812E62BDD837F00E11CE9 /* HowToScreen.swift */; };
+		EF5EE3622BFB8D250016D691 /* LevelScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = EF5EE3612BFB8D250016D691 /* LevelScreen.sks */; };
+		EF5EE3662BFB8D850016D691 /* LevelScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5EE3652BFB8D850016D691 /* LevelScreen.swift */; };
 		EF851F282BCEC6050078DC77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF851F272BCEC6050078DC77 /* AppDelegate.swift */; };
 		EF851F2A2BCEC6050078DC77 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EF851F292BCEC6050078DC77 /* GameScene.sks */; };
 		EF851F2C2BCEC6050078DC77 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = EF851F2B2BCEC6050078DC77 /* Actions.sks */; };
@@ -19,12 +21,18 @@
 		EF851F352BCEC6060078DC77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF851F342BCEC6060078DC77 /* Assets.xcassets */; };
 		EF851F382BCEC6060078DC77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF851F362BCEC6060078DC77 /* LaunchScreen.storyboard */; };
 		EF851F3F2BCEC8D40078DC77 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF851F3E2BCEC8D40078DC77 /* StartScreen.swift */; };
+		EFDCAEB92BFB9CD000C08512 /* LevelTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCAEB82BFB9CD000C08512 /* LevelTwo.swift */; };
+		EFDCAEBB2BFB9CDD00C08512 /* LevelThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDCAEBA2BFB9CDD00C08512 /* LevelThree.swift */; };
+		EFDCAEBD2BFB9D3000C08512 /* LevelTwoScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EFDCAEBC2BFB9D3000C08512 /* LevelTwoScene.sks */; };
+		EFDCAEBF2BFB9D5200C08512 /* LevelThreeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EFDCAEBE2BFB9D5200C08512 /* LevelThreeScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EF2812DE2BD2BB4200E11CE9 /* StartScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartScene.sks; sourceTree = "<group>"; };
 		EF2812E22BDD82FE00E11CE9 /* HowToScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HowToScene.sks; sourceTree = "<group>"; };
 		EF2812E62BDD837F00E11CE9 /* HowToScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToScreen.swift; sourceTree = "<group>"; };
+		EF5EE3612BFB8D250016D691 /* LevelScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelScreen.sks; sourceTree = "<group>"; };
+		EF5EE3652BFB8D850016D691 /* LevelScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelScreen.swift; sourceTree = "<group>"; };
 		EF851F242BCEC6050078DC77 /* Mega Jump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mega Jump.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF851F272BCEC6050078DC77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF851F292BCEC6050078DC77 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -35,6 +43,10 @@
 		EF851F342BCEC6060078DC77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF851F372BCEC6060078DC77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF851F3E2BCEC8D40078DC77 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
+		EFDCAEB82BFB9CD000C08512 /* LevelTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTwo.swift; sourceTree = "<group>"; };
+		EFDCAEBA2BFB9CDD00C08512 /* LevelThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelThree.swift; sourceTree = "<group>"; };
+		EFDCAEBC2BFB9D3000C08512 /* LevelTwoScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelTwoScene.sks; sourceTree = "<group>"; };
+		EFDCAEBE2BFB9D5200C08512 /* LevelThreeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelThreeScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,12 +79,18 @@
 		EF851F262BCEC6050078DC77 /* Mega Jump */ = {
 			isa = PBXGroup;
 			children = (
-				EF851F272BCEC6050078DC77 /* AppDelegate.swift */,
 				EF851F292BCEC6050078DC77 /* GameScene.sks */,
 				EF2812DE2BD2BB4200E11CE9 /* StartScene.sks */,
 				EF2812E22BDD82FE00E11CE9 /* HowToScene.sks */,
 				EF851F2B2BCEC6050078DC77 /* Actions.sks */,
+				EF5EE3612BFB8D250016D691 /* LevelScreen.sks */,
+				EF851F272BCEC6050078DC77 /* AppDelegate.swift */,
 				EF851F2D2BCEC6050078DC77 /* GameScene.swift */,
+				EF5EE3652BFB8D850016D691 /* LevelScreen.swift */,
+				EFDCAEB82BFB9CD000C08512 /* LevelTwo.swift */,
+				EFDCAEBC2BFB9D3000C08512 /* LevelTwoScene.sks */,
+				EFDCAEBA2BFB9CDD00C08512 /* LevelThree.swift */,
+				EFDCAEBE2BFB9D5200C08512 /* LevelThreeScene.sks */,
 				EF851F3E2BCEC8D40078DC77 /* StartScreen.swift */,
 				EF2812E62BDD837F00E11CE9 /* HowToScreen.swift */,
 				EF851F2F2BCEC6050078DC77 /* GameViewController.swift */,
@@ -143,10 +161,13 @@
 			files = (
 				EF2812E32BDD82FE00E11CE9 /* HowToScene.sks in Resources */,
 				EF851F332BCEC6050078DC77 /* Main.storyboard in Resources */,
+				EFDCAEBD2BFB9D3000C08512 /* LevelTwoScene.sks in Resources */,
 				EF851F2A2BCEC6050078DC77 /* GameScene.sks in Resources */,
 				EF851F352BCEC6060078DC77 /* Assets.xcassets in Resources */,
 				EF2812DF2BD2BB4200E11CE9 /* StartScene.sks in Resources */,
+				EFDCAEBF2BFB9D5200C08512 /* LevelThreeScene.sks in Resources */,
 				EF851F382BCEC6060078DC77 /* LaunchScreen.storyboard in Resources */,
+				EF5EE3622BFB8D250016D691 /* LevelScreen.sks in Resources */,
 				EF851F2C2BCEC6050078DC77 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,7 +181,10 @@
 			files = (
 				EF851F2E2BCEC6050078DC77 /* GameScene.swift in Sources */,
 				EF2812E72BDD837F00E11CE9 /* HowToScreen.swift in Sources */,
+				EFDCAEBB2BFB9CDD00C08512 /* LevelThree.swift in Sources */,
+				EF5EE3662BFB8D850016D691 /* LevelScreen.swift in Sources */,
 				EF851F302BCEC6050078DC77 /* GameViewController.swift in Sources */,
+				EFDCAEB92BFB9CD000C08512 /* LevelTwo.swift in Sources */,
 				EF851F3F2BCEC8D40078DC77 /* StartScreen.swift in Sources */,
 				EF851F282BCEC6050078DC77 /* AppDelegate.swift in Sources */,
 			);

@@ -50,7 +50,7 @@ class StartScreen: SKScene, SKPhysicsContactDelegate {
             let touchedNode = atPoint(location)
             if touchedNode.name == "playButton"  {
                 let transition = SKTransition.fade(withDuration: 1)
-                startScene = SKScene(fileNamed: "GameScene")
+                startScene = SKScene(fileNamed: "LevelScreen")
                 self.view?.presentScene(startScene, transition: transition)
             }
             if touchedNode.name == "HowToButton" {

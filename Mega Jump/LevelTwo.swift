@@ -1,16 +1,14 @@
 //
-//  GameScene.swift
+//  LevelTwo.swift
 //  Mega Jump
 //
-//  Created by Nicholas Papierniak on 4/16/24.
+//  Created by Nicholas Papierniak on 5/20/24.
 //
-
-// Umesh's comment
 
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class LevelTwo: SKScene, SKPhysicsContactDelegate {
     var player = SKSpriteNode()
     var gameCamera = SKCameraNode()
     var moveLeft = false
@@ -69,6 +67,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makeBlock(x: -400, y: -210, w : 180, h : 20, loseBlock: false)
         makeBlock(x: 125, y: -200, w : 220, h : 20, loseBlock: true)
     }
+    func makeWinBlock() {
+        winBlock = SKSpriteNode(color: .green, size: CGSize(width: 200, height: 30))
+        winBlock.position = CGPoint(x: 248, y: -75)
+        winBlock.physicsBody = SKPhysicsBody (rectangleOf: winBlock.size)
+        winBlock.physicsBody?.isDynamic = false
+        platform = SKSpriteNode(color: .black, size: CGSize(width: 50, height: 15))
+        platform.position = CGPoint(x: 248, y: -50)
+        platform.name = "winBlock"
+        platform.physicsBody = SKPhysicsBody (rectangleOf: platform.size)
+        platform.physicsBody?.isDynamic = false
+        addChild(winBlock)
+        addChild(platform)
+    }
     
     func addControlButton() {
         let moveLeftButton = UIButton(type: .system)
@@ -126,22 +137,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     @objc func backButton() {
         removeAllButtons()
         let transition = SKTransition.fade(withDuration: 1)
-        startScene = SKScene(fileNamed: "LevelScreen")
+        startScene = SKScene(fileNamed: "StartScene")
         self.view?.presentScene(startScene, transition: transition)
-    }
-    
-    func makeWinBlock() {
-        winBlock = SKSpriteNode(color: .green, size: CGSize(width: 200, height: 30))
-        winBlock.position = CGPoint(x: 248, y: -75)
-        winBlock.physicsBody = SKPhysicsBody (rectangleOf: winBlock.size)
-        winBlock.physicsBody?.isDynamic = false
-        platform = SKSpriteNode(color: .black, size: CGSize(width: 50, height: 15))
-        platform.position = CGPoint(x: 248, y: -50)
-        platform.name = "winBlock"
-        platform.physicsBody = SKPhysicsBody (rectangleOf: platform.size)
-        platform.physicsBody?.isDynamic = false
-        addChild(winBlock)
-        addChild(platform)
     }
     
     func makePlayer() {
@@ -218,6 +215,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gameView.addSubview(back)
         }
     }
+    
     func gameOver (winner: Bool) {
         playingGame = false
         playLabel.alpha = 1
